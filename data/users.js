@@ -20,18 +20,12 @@ let exportedMethods = {
                     order_history: [],
                     shopping_cart: []
                 };
-                console.log("addNewUsers!");
                 userCollection.insertOne(newUser).then(() => {
-                    //     return Promise.resolve(newInsertInformation._id);
-                    // }).then((newUserId) => {
-                    //     return this.getUserById(newUserId);
-                    console.log("Inserted!");
-                    console.log(username);
                     return resolve(true);
                 });
             });
         }).catch((Error) => {
-            return Promise.reject(Error);
+            reject(Error);
         });
     },
     getAllUsers() {
@@ -57,14 +51,14 @@ let exportedMethods = {
         });
     },
 
-    updateProfile(id,name, hobby) {
+    updateProfile(id, name, hobby) {
 
         return new Promise((resolve, recject) => {
 
             if (name === undefined) return recject("name can't be null");
             //find name in user collection and update profile, pay attention for _id attritube
-            getUserById(id).then((userCollection)=>{
-               //use user collection to insert name and hobby to db
+            getUserById(id).then((userCollection) => {
+                //use user collection to insert name and hobby to db
 
 
             });
@@ -74,21 +68,20 @@ let exportedMethods = {
     },
 
     getUserByUsernameForRegister(username) {
-        return new Promise((resolve, recject) => {
-
-            return users().then((userCollection) => {
-
+        return new Promise((resolve, reject) => {
+            console.log("getUserByUsernameForRegister");
+            users().then((userCollection) => {
                 userCollection.findOne({ username: username }).then((finded) => {
-                    if (!finded) return resolve(true);
-                    Promise.reject("This username has been registered, please try another!");
-
-                }).catch((error) => {
-                    console.log(error);
-                });
-            });
-        }).catch((Error) => {
-            return Promise.reject(Error);
-        });
+                    console.log("find one");
+                    if (!finded) resolve(true);
+                    reject("Failed!");
+                }, (reject) => {
+                    reject("FFFailed!");
+                })
+            }, (reject) => {
+                reject("FFFFFailed!");
+            })
+        })
     },
 
     getUserByUsernameAndPassword(username, password) {

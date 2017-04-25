@@ -26,18 +26,19 @@ let exportedMethods = {
 
 				reject("your password does not match the first time you enter");
 			} else {
-				//db operation, insert data to db
-				console.log("username and password valid!!");
 				users.getUserByUsernameForRegister(username).then(() => {
 					users.addNewUsers(username, password).then(() => {
-						reject( "addNewUsers successfully");
-						return resolve(true);
-					})
+						resolve(true);
+					}, (reject) => {
+						reject("Failed, please try again!");
+					});
 				}, (reject) => {
-					reject(reject);
+					console.log("No!");
+					reject("Username existed, please try another one!");
 				}).catch((Error) => {
-					return Promise.reject(Error);
-				});
+					console.log("Catch!")
+					Promise.reject(Error);
+				})
 			}
 		})
 	}
