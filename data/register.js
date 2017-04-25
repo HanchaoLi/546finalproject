@@ -30,8 +30,8 @@ let exportedMethods = {
 				console.log("username and password valid!!");
 				users.getUserByUsernameForRegister(username).then(() => {
 					users.addNewUsers(username, password).then(() => {
-						reject( "addNewUsers successfully");
-						return resolve(true);
+						// reject( "addNewUsers successfully");
+						resolve(true);
 					})
 				}, (reject) => {
 					reject(reject);

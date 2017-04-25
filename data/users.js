@@ -27,11 +27,9 @@ let exportedMethods = {
                     //     return this.getUserById(newUserId);
                     console.log("Inserted!");
                     console.log(username);
-                    return resolve(true);
+                     resolve(true);
                 });
             });
-        }).catch((Error) => {
-            return Promise.reject(Error);
         });
     },
     getAllUsers() {
@@ -80,7 +78,7 @@ let exportedMethods = {
 
                 userCollection.findOne({ username: username }).then((finded) => {
                     if (!finded) return resolve(true);
-                    Promise.reject("This username has been registered, please try another!");
+                    return Promise.reject("This username has been registered, please try another!");
 
                 }).catch((error) => {
                     console.log(error);
@@ -98,7 +96,7 @@ let exportedMethods = {
             users().then((userCollection) => {
                 userCollection.findOne({ username: username }).then((user) => {
                     let res = bcrypt.compareSync(password, user.hashedPassword);
-                    if (!res) return Promise.reject("Invalid username or password!");
+                    if (!res) return reject("Invalid username or password!");
                     return resolve(user);
                 });
             }).catch((Error) => {

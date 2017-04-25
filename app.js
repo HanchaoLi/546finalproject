@@ -58,6 +58,12 @@ app.get('/profile',(req,res)=>{
      res.render("layouts/profile");
  });
 
+
+app.get('/feedback',(req,res)=>{
+ 
+     res.render("layouts/feedback");
+ });
+
 configRoutes(app);
 
 
