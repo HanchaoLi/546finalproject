@@ -9,6 +9,7 @@
     <meta name="author" content="">
 
     <title>Shopping.com</title>
+    <link rel="icon" type="image/ico" href="../img/logo.ico" />
 
     <!-- Bootstrap Core CSS -->
     <link href="../public/css/bootstrap.min.css" rel="stylesheet">
@@ -118,9 +119,16 @@
                         <input type="checkbox" name="checkbox" id="defineCheckbox1" />
                         <label for="defineCheckbox1">Get it by tommorow</label>
                     </div><br>
-
+                    
                     <p>Brand</p>
-                    <div class="funkyradio-info">
+                    {{#each brand}}
+                        <div class="funkyradio-info">
+                        <input type="checkbox" name="checkbox" id="{{brandID}}" />
+                        <label for="{{brandID}}">&nbsp;{{brandName}}</label>
+                        </div>
+                    {{/each}}
+                    
+                    {{!--<div class="funkyradio-info">
                         <input type="checkbox" name="checkbox" id="brandCheckbox1" />
                         <label for="brandCheckbox1">&nbsp;</label>
                     </div>
@@ -136,7 +144,7 @@
                         <input type="checkbox" name="checkbox" id="brandCheckbox4" />
                         <label for="brandCheckbox4">&nbsp;</label>
                     </div>
-                    <div><a href="">+ See more</a></div><br>
+                    <div><a href="">+ See more</a></div><br>--}}
 
                     <p>Condition</p>
                     <div class="funkyradio-info">
@@ -188,7 +196,12 @@
                 </div>
 
                 <div class="row">
-
+                    <ul>
+                        {{#each Product}}
+                        <li>
+                        </li>
+                        {{/each}}
+                    </ul>
                     <div class="col-sm-4 col-lg-4 col-md-4">
                         <div class="thumbnail">
                             <img src="http://placehold.it/320x150" alt="">

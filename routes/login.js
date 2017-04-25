@@ -33,7 +33,7 @@ router.get("/", (req, res) => {
     
     if (req.user) {
 
-        res.redirect("private");
+        res.redirect("shopping");
     }
     else {
         res.render("layouts/login",{ message: "Please input your username and password!"});

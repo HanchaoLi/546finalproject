@@ -8,7 +8,7 @@ const constructorMethod = (app) => {
     app.use("/", loginRoutes);
     app.use("/", registerRoutes);
     app.use("/", profileRoutes);
-    app.use("/", profileRoutes);
+    
     //  app.use("*", (req, res) => {
     //     res.status(404).json({error: "Not found"});
     // });

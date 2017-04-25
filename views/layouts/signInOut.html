@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title> Shopping.com</title>
+    <link rel="icon" type="image/ico" href="../img/logo.ico" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../../public/css/bootstrap.min.css">
+    <!-- Custom CSS -->
+    <link href="../../public/css/signInOut.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery-Flip/1.0.18/jquery.flip.js"></script>
+    <script src="../../public/js/signInOut.js"></script>
+
+</head>
+
+<body class="main">
+    <div class="login-screen"></div>
+    <div class="login-center">
+        <div class="container min-height" style="margin-top: 100px;">
+            <div class="row">
+                <div class="col-xs-4 col-md-offset-8">
+                    <div class="login" id="card">
+                        <div class="front signin_form">
+                            <p>Login Your Account</p>
+                            <form class="login-form">
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <input name="username" type="email" class="form-control" placeholder="Type your email">
+                                        <span class="input-group-addon">
+                                          <i class="glyphicon glyphicon-user"></i>
+                                      </span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <input name="password" type="password" class="form-control" placeholder="Type your password">
+                                        <span class="input-group-addon">
+                                          <i class="glyphicon glyphicon-lock"></i>
+                                      </span>
+                                    </div>
+                                </div>
+                                <div class="checkbox">
+                                    <label><input type="checkbox">Remember me next time.</label>
+                                </div>
+
+                                <div class="form-group sign-btn">
+                                    <input type="submit" class="btn" value="Log in">
+                                    <p><a href="#" class="forgot">Forget your password?</a></p>
+                                    <p><strong>New to Shopping.com?</strong><br><a href="#" id="flip-btn" class="signup signup_link" onclick="toRegister()">Sign up for a new account</a></p>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="back signup_form" style="opacity: 0;">
+                            <p>Sign Up for Your New Account</p>
+                            <form class="login-form">
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <input name="username" type="text" class="form-control" placeholder="Username">
+                                        <span class="input-group-addon">
+                                          <i class="glyphicon glyphicon-user"></i>
+                                      </span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <input name="password" type="text" class="form-control" placeholder="Password">
+                                        <span class="input-group-addon">
+                                          <i class="glyphicon glyphicon-lock"></i>
+                                      </span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <input name="reenterpassword" type="password" class="form-control" placeholder="Confirm Password">
+                                        <span class="input-group-addon">
+                                          <i class="glyphicon glyphicon-lock"></i>
+                                      </span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <input name="email" type="email" class="form-control" placeholder="Email">
+                                        <span class="input-group-addon">
+                                          <i class="glyphicon glyphicon-envelope"></i>
+                                      </span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group sign-btn">
+                                    <input type="submit" class="btn" value="Sign up">
+                                    <br><br>
+                                    <p>Already have an account? <a href="#" id="unflip-btn" class="signup">Log in</a></p>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="container-fluid text-center">
+        <p>Copyright © 2017 Jiawen Peng. All rights reserved.</p>
+        <form class="form-inline">Get deals:
+            <input type="email" class="form-control" size="50" placeholder="Email Address">
+            <button type="button" class="btn btn-danger">Sign Up</button>
+        </form>
+    </footer>
+</body>
+
+</html>
