@@ -7,37 +7,36 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 
 passport.use(new LocalStrategy({
-    usernameField: 'username',
-    passwordField: 'password'
-},
-    function (username, password, done) {
+        usernameField: 'username',
+        passwordField: 'password'
+    },
+    function(username, password, done) {
 
         User.getUserByUsernameAndPassword(username, password).then((user) => {
             return done(null, user);
         }, (reject) => {
             console.log("wrong!");
-            
+
             return done(null, false);
         });
     }
 ));
 
-passport.serializeUser(function (user, done) {
+passport.serializeUser(function(user, done) {
     done(null, user);
 });
 
-passport.deserializeUser(function (user, done) {
+passport.deserializeUser(function(user, done) {
     done(null, user);
 });
 
 router.get("/", (req, res) => {
-    
+
     if (req.user) {
 
         res.redirect("goods");
-    }
-    else {
-        res.render("layouts/login",{ message: "Please input your username and password!"});
+    } else {
+        res.render("layouts/home", { message: "Please input your username and password!" });
     }
 });
 
@@ -58,21 +57,28 @@ router.get("/", (req, res) => {
 // });
 
 
-router.get('/logout', function(req, res){
-    
-  req.logout();
+router.get('/logout', function(req, res) {
 
-  res.redirect('/');
+    req.logout();
+
+    res.redirect('/');
+});
+
+
+router.get('/login', function(req, res) {
+
+    res.render('layouts/login');
 });
 
 
 router.post('/login',
-    passport.authenticate('local',{
-        successRedirect: '/goods',
+    passport.authenticate('local', {
+        successRedirect: '/home',
         successFlash: 'Welcome!',
         failureRedirect: '/',
         failureFlash: 'Invalid username or password.',
-        failureFlash: true}));
+        failureFlash: true
+    }));
 
 
 
