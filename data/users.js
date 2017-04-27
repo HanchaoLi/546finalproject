@@ -70,19 +70,49 @@ let exportedMethods = {
     getUserByUsernameForRegister(username) {
         return new Promise((resolve, reject) => {
             console.log("getUserByUsernameForRegister");
-            users().then((userCollection) => {
-                userCollection.findOne({ username: username }).then((finded) => {
-                    console.log("find one");
-                    if (!finded) resolve(true);
-                    reject("Failed!");
-                }, (reject) => {
-                    reject("FFFailed!");
-                })
-            }, (reject) => {
-                reject("FFFFFailed!");
+            users().findOne({ username: username }).then((finded) => {
+                console.log("find one");
+                if (!finded) resolve(true);
+                console.log("1");
+                throw "Failed!";
+            }).catch((Error) => {
+                console.log("22");
+                throw "Failed!";
             })
         })
     },
+
+    getUserByUsernameForRegisterAndaddNewusers(username, password) {
+        // return new Promise((resolve, reject) => {
+        return users().then((userCollection) => {
+            return userCollection.findOne({ username: username }).then((finded) => {
+                if (finded) {
+                    console.log("find one");
+                    return Promise.reject("Username existed, please try another!");
+                }
+                console.log("new");
+                let ID = uuid.v4();
+                let newUser = {
+                    _id: ID,
+                    username: username,
+                    hashedPassword: bcrypt.hashSync(password, 10),
+                    profile: {
+                        name: "Unset",
+                        hobby: "Unset",
+                        _id: ID
+                    },
+                    order_history: [],
+                    shopping_cart: []
+                };
+                console.log("1");
+                return userCollection.insertOne(newUser).then(() => {
+                    console.log("2");
+                    return Promise.resolve(true);
+                });
+            });
+        })
+    },
+    // })
 
     getUserByUsernameAndPassword(username, password) {
         return new Promise((resolve, reject) => {
