@@ -9,13 +9,19 @@ const path = require('path');
 
 router.post("/register", (req, res) => {
 
-  Register.registerUser(req.body.username, req.body.password, req.body.reenterpassword).then(() => {
-    console.log("Goto login!");
+  Register.registerUser(req.body.username, req.body.password, req.body.reenterpassword).then(resolve => {
+
+
+    console.log(resolve);
     res.render("layouts/login");
 
-  }, (reject) => {
-    res.render("layouts/register", { message: `${reject}` });
-  }).catch((error) => {
+  }
+  // , (reject) => {
+  // 	console.log(1);
+  //   res.render("layouts/login", { message: `${reject}` });
+  // })
+  ).catch((error) => {
+  	console.log(2);
     res.render("layouts/register", { message: `${error}` });
   });
 })
