@@ -20,6 +20,8 @@ let getCollectionFn = (collection) => {
 module.exports = {
     Users:getCollectionFn("Users"),
     Feedback:getCollectionFn("Feedback"),
-    Goods:getCollectionFn("Goods")
+    Goods:getCollectionFn("Goods"),
+    Product_Departments:getCollectionFn("Product_Departments")
+
 };
 
