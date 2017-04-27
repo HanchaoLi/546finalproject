@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Shopping.com</title>
+    <link rel="icon" type="image/ico" href="../img/logo.ico" />
+
+    <!-- Bootstrap Core CSS -->
+    <link href="../../public/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="../../public/css/search-result.css" rel="stylesheet">
+
+</head>
+
+<body class="paddingBody">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#home">Shopping.com</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="navbar-collapse collapse" id="navbar-mid-collapse">
+                <div class="nav navbar-nav navbar-right" id="loginOut">
+                    <li><a href="#"><span class="glyphicon glyphicon-user"></span> Your Account</a></li>
+                    <li><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li>
+                </div>
+
+                <div class="nav navbar-nav">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-taggle" data-toggle="dropdown" onmouseover="">Departments</a>
+                        <ul class="dropdown-menu">
+                            <li><a id="action-1" href="#">&nbsp;</a></li>
+                            <li><a href="#">&nbsp;</a></li>
+                            <li><a href="#">&nbsp;</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">&nbsp;</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">&nbsp;</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-taggle" data-toggle="dropdown" onmouseover="">Browsing History</a>
+                        <ul class="dropdown-menu" id="browsingHistory">
+                        </ul>
+                    </li>
+
+                    <ul class="nav navbar-nav">
+                        <li><a href="#">Today's deals</a></li>
+                        <li>
+                            <a href="#">Help</a>
+                        </li>
+                    </ul>
+
+                </div>
+                <form class="navbar-form" role="search">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search">
+                        <span class="input-group-btn">
+                <button class="btn btn-success" type="button"><span class="glyphicon glyphicon-search"></span></button>
+                        </span>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+        <!-- /.navbar-collapse -->
+
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Page Content -->
+    <div class="container" style="background: white;">
+
+        <div class="row">
+
+            <div class="col-md-3">
+                <div class="funkyradio">
+                    <p class="lead">Show results for</p>
+                    <div class="funkyradio-info">
+                        <input type="radio" name="checkbox" id="aptRadio1" />
+                        <label for="aptRadio1">&nbsp;</label>
+                    </div>
+                    <div class="funkyradio-info">
+                        <input type="radio" name="checkbox" id="aptRadio2" />
+                        <label for="aptRadio2">&nbsp;</label>
+                    </div>
+                    <div class="funkyradio-info">
+                        <input type="radio" name="checkbox" id="aptRadio3" />
+                        <label for="aptRadio3">&nbsp;</label>
+                    </div><br>
+
+                    <p class="lead">Refined by</p>
+                    <p>Delivery Day</p>
+                    <div class="funkyradio-info">
+                        <input type="checkbox" name="checkbox" id="defineCheckbox1" />
+                        <label for="defineCheckbox1">Get it by tommorow</label>
+                    </div><br>
+
+                    <p>Brand</p>
+                    {{#each brand}}
+                    <div class="funkyradio-info">
+                        <input type="checkbox" name="checkbox" id="{{brandID}}" />
+                        <label for="{{brandID}}">&nbsp;{{brandName}}</label>
+                    </div>
+                    {{/each}} {{!--
+
+                    <div class="funkyradio-info">
+                        <input type="checkbox" name="checkbox" id="brandCheckbox1" />
+                        <label for="brandCheckbox1">&nbsp;</label>
+                    </div>
+                    <div class="funkyradio-info">
+                        <input type="checkbox" name="checkbox" id="brandCheckbox2" />
+                        <label for="brandCheckbox2">&nbsp;</label>
+                    </div>
+                    <div class="funkyradio-info">
+                        <input type="checkbox" name="checkbox" id="brandCheckbox3" />
+                        <label for="brandCheckbox3">&nbsp;</label>
+                    </div>
+                    <div class="funkyradio-info">
+                        <input type="checkbox" name="checkbox" id="brandCheckbox4" />
+                        <label for="brandCheckbox4">&nbsp;</label>
+                    </div>
+                    <div><a href="">+ See more</a></div><br>--}}
+
+                    <p>Condition</p>
+                    <div class="funkyradio-info">
+                        <input type="radio" name="checkbox" id="conRadio1" />
+                        <label for="conRadio1">New</label>
+                    </div>
+                    <div class="funkyradio-info">
+                        <input type="radio" name="checkbox" id="conRadio2" />
+                        <label for="conRadio2">Refurbished</label>
+                    </div>
+                    <div class="funkyradio-info">
+                        <input type="radio" name="checkbox" id="conRadio3" />
+                        <label for="conRadio3">Used</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-9">
+
+                <div class="row carousel-holder">
+
+                    <div class="col-md-12">
+                        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                            <ol class="carousel-indicators">
+                                <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                                <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                                <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                            </ol>
+                            <div class="carousel-inner">
+                                <div class="item active">
+                                    <img class="slide-image" src="http://placehold.it/800x300" alt="">
+                                </div>
+                                <div class="item">
+                                    <img class="slide-image" src="http://placehold.it/800x300" alt="">
+                                </div>
+                                <div class="item">
+                                    <img class="slide-image" src="http://placehold.it/800x300" alt="">
+                                </div>
+                            </div>
+                            <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+                                <span class="glyphicon glyphicon-chevron-left"></span>
+                            </a>
+                            <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+                                <span class="glyphicon glyphicon-chevron-right"></span>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <ul>
+                        {{#each Product}}
+                        <li>
+                        </li>
+                        {{/each}}
+                    </ul>
+                    <div class="col-sm-4 col-lg-4 col-md-4">
+                        <div class="thumbnail">
+                            <img src="http://placehold.it/320x150" alt="">
+                            <div class="caption">
+                                <h4 class="pull-right">$24.99</h4>
+                                <h4><a href="#">First Product</a>
+                                </h4>
+                                <p>See more snippets like this online store item at <a target="_blank" href="http://www.bootsnipp.com">Bootsnipp - http://bootsnipp.com</a>.</p>
+                            </div>
+                            <div class="ratings">
+                                <p class="pull-right">15 reviews</p>
+                                <p>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4 col-lg-4 col-md-4">
+                        <div class="thumbnail">
+                            <img src="http://placehold.it/320x150" alt="">
+                            <div class="caption">
+                                <h4 class="pull-right">$64.99</h4>
+                                <h4><a href="#">Second Product</a>
+                                </h4>
+                                <p>This is a short description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                            </div>
+                            <div class="ratings">
+                                <p class="pull-right">12 reviews</p>
+                                <p>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star-empty"></span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4 col-lg-4 col-md-4">
+                        <div class="thumbnail">
+                            <img src="http://placehold.it/320x150" alt="">
+                            <div class="caption">
+                                <h4 class="pull-right">$74.99</h4>
+                                <h4><a href="#">Third Product</a>
+                                </h4>
+                                <p>This is a short description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                            </div>
+                            <div class="ratings">
+                                <p class="pull-right">31 reviews</p>
+                                <p>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star-empty"></span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4 col-lg-4 col-md-4">
+                        <div class="thumbnail">
+                            <img src="http://placehold.it/320x150" alt="">
+                            <div class="caption">
+                                <h4 class="pull-right">$84.99</h4>
+                                <h4><a href="#">Fourth Product</a>
+                                </h4>
+                                <p>This is a short description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                            </div>
+                            <div class="ratings">
+                                <p class="pull-right">6 reviews</p>
+                                <p>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star-empty"></span>
+                                    <span class="glyphicon glyphicon-star-empty"></span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4 col-lg-4 col-md-4">
+                        <div class="thumbnail">
+                            <img src="http://placehold.it/320x150" alt="">
+                            <div class="caption">
+                                <h4 class="pull-right">$94.99</h4>
+                                <h4><a href="#">Fifth Product</a>
+                                </h4>
+                                <p>This is a short description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                            </div>
+                            <div class="ratings">
+                                <p class="pull-right">18 reviews</p>
+                                <p>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star-empty"></span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4 col-lg-4 col-md-4">
+                        <h4><a href="#">Like this template?</a>
+                        </h4>
+                        <p>If you like this template, then check out <a target="_blank" href="http://maxoffsky.com/code-blog/laravel-shop-tutorial-1-building-a-review-system/">this tutorial</a> on how to build a working review system for your online store!</p>
+                        <a class="btn btn-primary" target="_blank" href="http://maxoffsky.com/code-blog/laravel-shop-tutorial-1-building-a-review-system/">View Tutorial</a>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+    <script src="../../public/js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="../../public/js/bootstrap.min.js"></script>
+    <footer class="container-fluid text-center">
+        <p>Copyright © 2017 Jiawen Peng. All rights reserved.</p>
+        <form class="form-inline">Get deals:
+            <input type="email" class="form-control" size="50" placeholder="Email Address">
+            <button type="button" class="btn btn-danger">Sign Up</button>
+        </form>
+    </footer>
+</body>
+
+</html>
