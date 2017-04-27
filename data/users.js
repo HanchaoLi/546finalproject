@@ -20,16 +20,12 @@ let exportedMethods = {
                     order_history: [],
                     shopping_cart: []
                 };
-                console.log("addNewUsers!");
                 userCollection.insertOne(newUser).then(() => {
-                    //     return Promise.resolve(newInsertInformation._id);
-                    // }).then((newUserId) => {
-                    //     return this.getUserById(newUserId);
-                    console.log("Inserted!");
-                    console.log(username);
-                     resolve(true);
+                    return resolve(true);
                 });
             });
+        }).catch((Error) => {
+            reject(Error);
         });
     },
     getAllUsers() {
@@ -71,38 +67,48 @@ let exportedMethods = {
         });
     },
 
-    getUserByUsernameForRegister(username) {
-        return new Promise((resolve, recject) => {
-
-            return users().then((userCollection) => {
-
-                userCollection.findOne({ username: username }).then((finded) => {
-                    if (!finded) return resolve(true);
-                    return Promise.reject("This username has been registered, please try another!");
-
-                }).catch((error) => {
-                    console.log(error);
+    getUserByUsernameForRegisterAndaddNewusers(username, password) {
+        return users().then((userCollection) => {
+            return userCollection.findOne({ username: username }).then((finded) => {
+                if (finded) {
+                    console.log("find one");
+                    return Promise.reject("Username existed, please try another!");
+                }
+                console.log("new");
+                let ID = uuid.v4();
+                let newUser = {
+                    _id: ID,
+                    username: username,
+                    hashedPassword: bcrypt.hashSync(password, 10),
+                    profile: {
+                        name: "Unset",
+                        hobby: "Unset",
+                        _id: ID
+                    },
+                    order_history: [],
+                    shopping_cart: []
+                };
+                console.log("1");
+                return userCollection.insertOne(newUser).then(() => {
+                    console.log("2");
+                    return Promise.resolve(true);
                 });
+            });
+        })
+    },
+
+    getUserByUsernameAndPassword(username, password) {
+        if (username === undefined) return Promise.reject("No username provided");
+        if (password === undefined) return Promise.reject("No password provided");
+        return users().then((userCollection) => {
+            return userCollection.findOne({ username: username }).then((user) => {
+                let res = bcrypt.compareSync(password, user.hashedPassword);
+                if (!res) throw "Invalid username or password!";
+                return resolve(user);
             });
         }).catch((Error) => {
             return Promise.reject(Error);
         });
-    },
-
-    getUserByUsernameAndPassword(username, password) {
-        return new Promise((resolve, reject) => {
-            if (username === undefined) return reject("No username provided");
-            if (password === undefined) return reject("No password provided");
-            users().then((userCollection) => {
-                userCollection.findOne({ username: username }).then((user) => {
-                    let res = bcrypt.compareSync(password, user.hashedPassword);
-                    if (!res) return reject("Invalid username or password!");
-                    return resolve(user);
-                });
-            }).catch((Error) => {
-                return Promise.reject(Error);
-            });
-        })
     }
 }
 
