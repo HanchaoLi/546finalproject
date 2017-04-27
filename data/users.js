@@ -71,7 +71,6 @@ let exportedMethods = {
         return users().then((userCollection) => {
             return userCollection.findOne({ username: username }).then((finded) => {
                 if (finded) {
-                    console.log("find one");
                     return Promise.reject("Username existed, please try another!");
                 }
                 console.log("new");
