@@ -23,16 +23,16 @@
                         <a href="#" class="dropdown-taggle" data-toggle="dropdown" onmouseover="">Departments</a>
                         <ul class="dropdown-menu">
                             {{#each Department}}
-                            <li><a id="{{departmentID}}" href="{{goods}}">{{departmentName}}</a></li>
+                                <li><a href="/goodsbydepartment/{{_id}}">{{this.department}}</a></li>
                             {{/each}}
                         </ul>
                     </li>
                     <li class="dropdown">
                         <a href="#" class="nav-a dropdown-taggle" data-toggle="dropdown" onmouseover="">Browsing History</a>
                         <ul class="dropdown-menu" id="browsingHistory">
-                            <li>
-                                &nbsp;
-                            </li>
+                            {{#each history}}
+                                <a href="/goods/{{_id}}"><li>{{this.name}}</li></a>
+                            {{/each}}
                         </ul>
                     </li>
                 </ul>
@@ -91,16 +91,16 @@
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
                     <li>
-                        <a href="userProfile.html"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
+                        <a href="http://localhost:3000/userProfile"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
                     </li>
                     <li>
-                        <a href="favorites.html"><i class="fa fa-heart-o"></i> Favorites</a>
+                        <a href="http://localhost:3000/favorites"><i class="fa fa-heart-o"></i> Favorites</a>
                     </li>
                     <li class="active">
-                        <a href="orderHistory.html"><i class="fa fa-history"></i> Order History</a>
+                        <a href="http://localhost:3000/orderHistory"><i class="fa fa-history"></i> Order History</a>
                     </li>
                     <li>
-                        <a href="settings.html"><i class="fa fa-fw fa-edit"></i> Settings</a>
+                        <a href="http://localhost:3000/settings"><i class="fa fa-fw fa-edit"></i> Settings</a>
                     </li>
                 </ul>
             </div>
@@ -119,6 +119,11 @@
                                 <i class="fa fa-history"></i> Order History
                             </li>
                         </ol>
+
+                        {{#each order_history}}
+                           <a href="/goods/{{_id}}"><li>{{this.name}}</li></a>
+                            {{/each}}
+
                     </div>
                 </div>
             </div>

@@ -26,9 +26,12 @@ router.post('/profile', (req, res) => {
 
 router.get("/userProfile", (req, res) => {
 
+    console.log(req.user);
+
+
     if (req.user) {
 
-        res.render("layouts/userProfile", { user: req.user });
+        res.render("layouts/userProfile", { loggedin: req.user });
 
     } else {
         res.render("layouts/login", { message: "please login first" });

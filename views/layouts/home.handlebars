@@ -28,9 +28,9 @@
                     <li class="dropdown">
                         <a href="#" class="nav-a dropdown-taggle" data-toggle="dropdown" onmouseover="">Browsing History</a>
                         <ul class="dropdown-menu" id="browsingHistory">
-                            <li>
-                                &nbsp;
-                                </li>
+                            {{#each history}}
+                                <a href="/goods/{{_id}}"><li>{{this.name}}</li></a>
+                            {{/each}}
                         </ul>
                     </li>
                 </ul>

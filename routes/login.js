@@ -25,6 +25,7 @@ passport.use(new LocalStrategy({
             return done(null, false,{message:"invalid username and password!"});
 
         });
+
     }
 ));
 
@@ -73,17 +74,19 @@ router.get('/login', (req, res) => {
 router.get("/home", (req, res) => {
 
     Departments.getAllDepartment().then((departmentsCollection)=>{
-        if(req.user){
-            res.render("layouts/home", { loggedin: req.user,Department:departmentsCollection });
+
+         if(req.user){
+            
+
+           res.render("layouts/home", { loggedin: req.user,Department:departmentsCollection,history:req.user.browsing_history });
+        
+            
         }else{
-            console.log(departmentsCollection);
             res.render("layouts/home", {Department:departmentsCollection });
 
         }
-
-    
-
-
+       
+        
     });
     
     
@@ -92,15 +95,39 @@ router.get("/home", (req, res) => {
 
 router.post('/login',
     passport.authenticate('local', {
-         successRedirect: '/home',
-        failureRedirect: '/login', // see text
-        failureFlash: true // optional, see text as well
+        successRedirect: '/home',
+        failureRedirect:'/login',
+        failureFlash: 'Invalid username or password.'
        
     }));
 
+// router.post('/login', function(req, res, done ){
+//     passport.authenticate('local', function(err, user, info) {
+       
+//       if (err) { return next(err) }
+       
+//       if (!user) 
+//         { return res.render("layouts/login", { message: info.message }); 
+
+//         }else{
+//             Departments.getAllDepartment().then((departmentsCollection)=>{
+//             res.render("layouts/home",{loggedin: user,Department:departmentsCollection });
+//           });
+//       }
+      
+//     })(req, res, done);   
+// });
 
 
+router.get("/settings",(req,res)=>{
 
+     Departments.getAllDepartment().then((departmentsCollection)=>{
+
+    res.render("layouts/settings",{loggedin: req.user,Department:departmentsCollection});
+    
+    });
+
+});
 
 
 module.exports = router;

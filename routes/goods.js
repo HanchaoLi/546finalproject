@@ -59,12 +59,15 @@ router.get("/goods", (req, res) => {
 
 router.get("/goods/:id", (req, res) => {
 
-    let userid = req.user._id;
+    
     let id = req.params.id;
 
-
-    Users.updateBrowsing(userid, id);
-
+    if(req.user)
+    {
+        let userid = req.user._id;
+        Users.updateBrowsing(userid, id);
+    }
+   
     Departments.getAllDepartment().then((departmentsCollection)=>{
 
     Goods.getGoodsById(req.params.id).then((good) => {
@@ -124,7 +127,7 @@ router.post("/buy", (req, res) => {
     let name = req.body.buygoodsname;
 
 
-    if (!req.session.passport.user) {
+    if (!req.user) {
 
         res.render("layouts/login", { message: "please login first" });
     } else {
@@ -201,13 +204,27 @@ router.post("/addfavorite",(req,res)=>{
 
 });
 
+router.get("/favorites",(req,res)=>{
+
+    if(!req.user){
+        res.render("layouts/login", { message: "please login first" });
+    }else{
+        Departments.getAllDepartment().then((departmentsCollection)=>{
+
+        res.render("layouts/favorites",{loggedin:req.user,Department:departmentsCollection,favorites:req.user.favorites});
+    });
+    }
+
+
+});
+
 router.get("/browsinghistory",(req,res)=>{  
 
       
 
        if(req.user){
        
-        res.render("layouts/borwsinghistory", { loggedin: req.user.browsing_history });
+        res.render("layouts/borwsinghistory", { browsing_history: req.user.browsing_history });
 
         }else{
 
@@ -223,7 +240,7 @@ router.get("/orderhistory",(req,res)=>{
 
      if(req.user){
 
-     res.render("layouts/orderhistory", { loggedin: req.user.order_history });
+     res.render("layouts/orderHistory", { order_history: req.user.order_history });
 
      }else{
 
